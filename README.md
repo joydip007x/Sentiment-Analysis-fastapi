@@ -1,6 +1,7 @@
 
  # Sentiment Analysis 
  ##### **USING**  : Python, Fastapi, Pydantic, Transformer
+ ##### S/A model : https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest 
 <hr>
  A Backend build on Python & Fastapi with a RESTful API endpoint for sentiment analysis. <br>
  The API will accept text input, validate with Pydantic and return the sentiment analysis result using a pre-trained machine learning model.
