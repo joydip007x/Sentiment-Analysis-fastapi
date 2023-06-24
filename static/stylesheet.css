@@ -1,0 +1,302 @@
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--dur: 1s;
+	font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1280 - 320));
+}
+body, input {
+	color: var(--fg);
+	font: 1em/1.5 Hind, sans-serif;
+}
+input {
+	color: #317da3 !important;
+}
+body {
+	background: var(--bg);
+	display: flex;
+	height: 100vh;
+}
+form, input, .caret {
+	margin: auto;
+}
+form {
+	position: relative;
+	width: 100%;
+	max-width: 17em;
+}
+input, .caret {
+	display: block;
+	transition: all calc(var(--dur) * 0.5) linear;
+}
+input {
+	background: transparent;
+	border-radius: 50%;
+	box-shadow: 0 0 0 0.25em inset;
+	caret-color: var(--primary);
+	width: 2em;
+	height: 2em;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+input:focus, input:valid {
+	background: var(--input);
+	border-radius: 0.25em;
+	box-shadow: none;
+	padding: 0.75em 1em;
+	transition-duration: calc(var(--dur) * 0.25);
+	transition-delay: calc(var(--dur) * 0.25);
+	width: 100%;
+	height: 3em;
+}
+input:focus {
+	animation: showCaret var(--dur) steps(1);
+	outline: transparent;
+}
+input:focus + .caret, input:valid + .caret {
+	animation: handleToCaret var(--dur) linear;
+	background: transparent;
+	width: 1px;
+	height: 1.5em;
+	transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+}
+input::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+label {
+	color: #e3e4e8;	
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+.caret {
+	background: #317da3;
+	border-radius: 0 0 0.125em 0.125em;
+	margin-bottom: -0.6em;
+	width: 0.25em !important;
+	height: 1em;
+	transform: translate(0,-1em) rotate(-45deg) translate(0,0.875em);
+	transform-origin: 50% 0;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {	
+	:root {
+		--bg: #000000;
+		--fg: #e3e4e8;
+		--input: #ffffff;
+		--primary: #1448cb;
+	}
+}
+
+/* Animations */
+@keyframes showCaret {
+	from {
+		caret-color: transparent;
+	}
+	to {
+		caret-color: var(--primary);
+	}
+}
+@keyframes handleToCaret {
+	from {
+		background: currentColor;
+		width: 0.25em;
+		height: 1em;
+		transform: translate(0,-1em) rotate(-45deg) translate(0,0.875em);
+	}
+	25% {
+		background: currentColor;
+		width: 0.25em;
+		height: 1em;
+		transform: translate(0,-1em) rotate(-180deg) translate(0,0.875em);
+	}
+	50%, 62.5% {
+		background: var(--primary);
+		width: 1px;
+		height: 1.5em;
+		transform: translate(0,-1em) rotate(-180deg) translate(7.5em,2.5em);
+	}
+	75%, 99% {
+		background: var(--primary);
+		width: 1px;
+		height: 1.5em;
+		transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+	}
+	87.5% {
+		background: var(--primary);
+		width: 1px;
+		height: 1.5em;
+		transform: translate(0,-1em) rotate(-180deg) translate(7.5em,0.125em);
+	}
+	to {
+		background: transparent;
+		width: 1px;
+		height: 1.5em;
+		transform: translate(0,-1em) rotate(-180deg) translate(7.5em,-0.25em);
+	}
+}
+
+#second {
+	
+	background: #ffffff;
+	min-height: 100vh;
+	display: flex;
+	width: 35%;
+	align-items: center;
+	justify-content: center;
+	color: #1a0f0f;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 900;
+	padding-bottom: 0.5%;
+
+  }
+  
+@keyframes changeBackgroundColor1 {
+  0% {background-color: #FFD700;}
+  50% {background-color: #F0E68C; }
+  100% {background-color: #FFFF00;}
+}
+@keyframes changeBackgroundColor2 {
+	0% {background-color: #32de84;}
+	50% {background-color: #66FF00; }
+	100% {background-color: #00FF40;}
+}
+@keyframes changeBackgroundColor3 {
+	0% {background-color: #b9c8d6;}
+	50% {background-color: #36454F; }
+	100% {background-color: #e4f1fe;}
+}
+  #iconn{
+	background: #ffffff;
+	min-height: 100vh;
+	display: flex;
+	position: relative;
+	font-weight: 900;
+	margin-left: 10%;
+	padding-bottom: 0.5%;
+  }
+#third {
+		position: fixed;
+		margin-left: 50%;
+		left: 36%;
+		top: 62%;
+}  
+
+#newp {
+font-size: 1.5em !important;
+position: absolute;
+right: 12%;
+top: 61%;
+color: #000000
+
+
+}
+	
+  .fancy2 {
+
+  }
+
+  
+  #original {
+	font-size: 5.5vw;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 1;
+  }
+  
+  #result-text {
+	 padding-left: 5% !important;
+  }
+  .fancy {
+	@supports (background-clip: text) or (-webkit-background-clip: text) {
+	  background-image: 
+		url("data:image/svg+xml,%3Csvg width='2250' height='900' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Cpath fill='%2300A080' d='M0 0h2255v899H0z'/%3E%3Ccircle cx='366' cy='207' r='366' fill='%2300FDCF'/%3E%3Ccircle cx='1777.5' cy='318.5' r='477.5' fill='%2300FDCF'/%3E%3Ccircle cx='1215' cy='737' r='366' fill='%23008060'/%3E%3C/g%3E%3C/svg%3E%0A");
+	  background-size: 100% auto;
+	  background-position: center;
+	  color: transparent;
+	  -webkit-background-clip: text;
+	  background-clip: text;
+	}
+  }
+
+  .fa-face-meh-blank{
+	 font-size: 34px !important;
+	 color: #1448cb !important;
+  }
+
+
+  /* ////////////////////////////////////////////////////////////////// */
+
+  .landing {
+	background: black;
+	align-items: center;
+	justify-content: center ;
+	vertical-align: middle;
+	position: absolute;
+	width: 100%;
+  }
+  
+  #link{
+
+	position: relative;
+	font-size: 0.5em;
+	font-weight: bolder;
+
+  }
+
+
+
+  #welcome {
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+
+	padding-top: 1.5%;
+	align-items: center;
+	justify-content: center ;
+	vertical-align: middle;
+	position: absolute;
+    text-align: center;
+    padding-left: 0.9%;
+  }
+  .progress {
+	--progress: 0%;
+	
+	width: 500px;
+	height: 50px;
+	margin: 9em auto;
+	border: 1px solid #fff;
+	box-shadow: 0 0 10px #aaa;
+  }
+  
+  .progress .bar {
+	width: var(--progress);
+	height: 100%;
+	background: linear-gradient(rgb(4, 170, 247), rgb(8, 153, 232), rgba(20, 178, 240, 0.697));
+	background-repeat: repeat;
+	box-shadow: 0 0 10px 0px rgb(77, 74, 69);
+	animation: 
+	  shine 3s ease-in infinite,
+	  end 1s ease-out 1 5s;
+	transition: width 2s ease 2.5s;
+  }
+  
+  @property --progress {
+	syntax: "<length>";
+	initial-value: 0%;
+	inherits: true;
+  }
+  
+  @keyframes shine {
+	0% { background-position: 0 0; }
+	100% { background-position: 0 50px; }
+  }
+  
+  @keyframes end {
+	0%, 100% { box-shadow: 0 0 10px 0px orange; }
+	50% { box-shadow: 0 0 15px 5px orange; }
+  }

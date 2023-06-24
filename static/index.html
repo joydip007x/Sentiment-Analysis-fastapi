@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossOrigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css" integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug==" crossOrigin="anonymous" referrerpolicy="no-referrer" /></head>
+  
+<body>
+    <div class="landing">
+         <div class="progress">
+            <div class="bar"></div>
+
+            <h2 id="welcome">🙂Sentiment Analyser☹️<br><a id='link' href="https://github.com/joydip007x">joydip007x</a>
+            </h2>
+        
+          </div>
+    </div>
+    <div id="whole">
+    <form id="formid" autocomplete="off" name="info" onsubmit="handleSubmit(this['search-bar'].value);" href="/" >
+        <label for="text">Search</label>
+        <input id='search-bar' type="text" href="/" onkeypress="changed()" onchange="changed()"  required />
+        <span class="caret" id='search-c' href="/" ></span>
+    </form>
+    <!-- <p id="result-para">NONE</p>  -->
+    <!-- <div id="iconn">🙂</div> -->
+    <div id="second">
+     
+        <p id="original"><span id="result-text" class="fancy">😶<br>DEFAULT</span></p>
+
+    </div>
+
+    <div id="third">
+        <p id="newp"><span id="fancy2">10%</span></p>
+    </div>
+    <script>
+        document.getElementById("formid").addEventListener("submit", e => { e.preventDefault();});
+        document.getElementById("search-bar").addEventListener("change", e => {e.preventDefault();});
+         document.getElementById("search-bar").addEventListener("keypress", e => { 
+            document.getElementById("second").style="display:flex";
+            document.getElementById("result-text").innerHTML='👀<br> typing'
+         });
+
+        document.getElementById("second").style="display:none";
+
+    </script>
+
+</div>
+</body>
+<script async  type="text/javascript">
+
+
+async function changed(){
+    document.getElementById("second").style="display:flex";
+    document.getElementById("result-text").innerHTML='👀<br> typing'
+    document.getElementById("fancy2").style="display:none";
+
+}
+
+async function  handleSubmit( SearchText) {
+
+
+         const url="http://127.0.0.1:8000/analyze?withScore=True"
+         const data={"text":SearchText} 
+
+         try{
+            const fetchPromise = fetch(url,{
+                method: 'POST',  
+                // mode:"no-cors",
+                headers:{'Content-Type': 'application/json','accept': 'application/json'},
+                body:JSON.stringify(data),
+                Body:JSON.stringify([{"text":SearchText}]),
+
+            });
+            fetchPromise.then(response => {
+                 return response.json();
+            }).then(data => {
+                 console.log(JSON.stringify(data));
+                 console.log('it wokred')
+                //  document.getElementById("result-para").innerHTML=data['sentiment']
+                document.getElementById("second").style="display:flex";
+                document.getElementById("second").style="background:none";
+                document.getElementById("fancy2").style="display:flex";
+
+                 if(data['sentiment']=="neutral"){
+                    document.getElementById("result-text").innerText='🙂'+data['sentiment']///'   '+Math.trunc(data['score'])+'%'
+                    document.getElementById("second").style="animation: changeBackgroundColor1 7s infinite";
+                 }
+
+                 if(data['sentiment']=="positive"){
+                    document.getElementById("result-text").innerText='😀'+data['sentiment']///'   '+Math.trunc(data['score'])+'%'
+                    document.getElementById("second").style="animation: changeBackgroundColor2 7s infinite";
+                 }
+
+                 if(data['sentiment']=="negative"){
+                    document.getElementById("result-text").innerText='☹️ '+data['sentiment']///'   '+Math.trunc(data['score'])+'%'
+                    document.getElementById("second").style="animation: changeBackgroundColor3 7s infinite";
+                 }
+                //  document.getElementById("result2").innerText=Math.trunc(data['score'])+'%';
+                 document.getElementById("fancy2").innerText=Math.trunc(data['score'])+'%';
+
+
+            });
+        }
+        catch(err){
+            console.log('FAILED')
+        }
+
+}
+</script> 
+
+ 
+<script>
+    document.getElementById("whole").style="display:none";
+    
+    document.querySelector(".bar").style.setProperty("--progress", "100%");
+   
+    setTimeout(()=>{
+
+       document.querySelector(".bar").style.setProperty("display","none");
+       document.querySelector(".progress").style.setProperty("display","none");
+       document.getElementsByClassName("landing").style="width:0%";
+       document.getElementsByClassName("landing").style="display:none";
+       document.getElementById("whole").style="display:contents";
+    },6000)
+</script>
+</html>
