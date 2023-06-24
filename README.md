@@ -32,7 +32,7 @@ python -m venv .venv
   - Write an Sentence and Get Sentiment-Analyses instantly
 - Request is validated 
 - Response is validated
-- Added Extra Query  Sentiment Percentage Match
+- Added Extra Query   Sentiment Analysis (%)Percentage Result
 - Exception Handling included
 
   
