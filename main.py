@@ -23,8 +23,8 @@ async def validation_exception_handler(request: Request):
     return JSONResponse(content=jsonable_encoder({"detail": "BAD REQUEST"}), status_code=status.HTTP_400_BAD_REQUEST)
 
 
-if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run('main:app', host='0.0.0.0', port=8000 )
+# if __name__ == '__main__':
+#     import uvicorn
+#     uvicorn.run('main:app', host='0.0.0.0', port=8000 )
 
 
